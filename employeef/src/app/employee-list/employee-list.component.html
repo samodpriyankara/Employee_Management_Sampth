@@ -1,0 +1,130 @@
+<div class="container mt-5">
+    <div class="text-center mt-3 p-5">
+        <button mat-raised-button color="primary" class="m-5" routerLink="/">Home</button>
+        <button mat-raised-button color="primary" class="m-5" routerLink="/employee">Employee Save</button>
+
+    </div>
+
+    <table [dataSource]="dataSource" mat-table class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef> Contact </th>
+            <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Address </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="salary">
+            <th mat-header-cell *matHeaderCellDef> Gender </th>
+            <td mat-cell *matCellDef="let element"> {{element.salary}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-raised-button color="primary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal" (click)="edit(element)">Edit</button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-raised-button color="primary" (click)="deleteEmployee(element.id)">Delete</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Update Employee</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card p-5 mt-5">
+                        <form #employeeEditForm="ngForm" (ngSubmit)="updateEmployee(employeeEditForm)">
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Employee Id</mat-label>
+                                    <input matInput placeholder="employee id" name="employeeId"
+                                        [(ngModel)]="employeeToUpdate.id" disabled="">
+                                    <mat-icon matSuffix>check_circle</mat-icon>
+                                </mat-form-field>
+                            </p>
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>First Name</mat-label>
+                                    <input matInput placeholder="Placeholder" name="firstname"
+                                        [(ngModel)]="employeeToUpdate.firstName">
+                                    <mat-icon matSuffix>check_circle</mat-icon>
+                                </mat-form-field>
+                            </p>
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Last Name</mat-label>
+                                    <input matInput placeholder="Placeholder" name="lastname"
+                                        [(ngModel)]="employeeToUpdate.lastName">
+                                    <mat-icon matSuffix>check_circle</mat-icon>
+                                </mat-form-field>
+                            </p>
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput placeholder="Placeholder" name="email"
+                                        [(ngModel)]="employeeToUpdate.email">
+                                    <mat-icon matSuffix>check_circle</mat-icon>
+                                </mat-form-field>
+                            </p>
+
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Salary</mat-label>
+                                    <input matInput placeholder="Placeholder" name="salary"
+                                        [(ngModel)]="employeeToUpdate.salary">
+                                    <mat-icon matSuffix>check_circle</mat-icon>
+                                </mat-form-field>
+                            </p>
+                            
+                            <mat-divider></mat-divider>
+                            <div class="text-center mt-3 p-5">
+                                <button mat-raised-button color="primary" class="m-5" data-bs-dismiss="modal" aria-label="Close">Clear</button>
+                                <button mat-raised-button color="accent">Save</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+</div>

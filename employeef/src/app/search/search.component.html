@@ -1,0 +1,101 @@
+<div class="container">
+    <div class="text-center mt-3 p-5">
+        <button mat-raised-button color="primary" class="m-5" routerLink="/employee-list">Employee List</button>
+
+    </div>
+    <div class="card p-5 mt-5">
+        <form #employeeForm="ngForm" (ngSubmit)="getEmployee(employeeForm)">
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Employee Id</mat-label>
+                    <input matInput placeholder="employee id" name="id" [(ngModel)]="clickedEmployee.id">
+                    <mat-icon matSuffix>check_circle</mat-icon>
+                </mat-form-field>
+            </p>
+
+            <mat-divider></mat-divider>
+            <div class="text-center mt-3 p-5">
+
+                <button mat-raised-button color="accent" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">Search</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+
+
+<div class="container mt-5">
+    <div class="text-center mt-3 p-5">
+        <button mat-raised-button color="primary" class="m-5" routerLink="/">Home</button>
+        <button mat-raised-button color="primary" class="m-5" routerLink="/employee-list">Employee List</button>
+
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Update Employee</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card p-5 mt-5">
+                        <form #employeeEditForm="ngForm">
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Employee Id</mat-label>
+                                    <input matInput placeholder="employee id" name="employeeId"
+                                        [(ngModel)]="clickedEmployee.id" disabled="">
+                                    <mat-icon matSuffix>check_circle</mat-icon>
+                                </mat-form-field>
+                            </p>
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>First Name</mat-label>
+                                    <input matInput placeholder="Placeholder" name="firstname"
+                                        [(ngModel)]="clickedEmployee.firstName">
+                                    <mat-icon matSuffix>check_circle</mat-icon>
+                                </mat-form-field>
+                            </p>
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Last Name</mat-label>
+                                    <input matInput placeholder="Placeholder" name="lastname"
+                                        [(ngModel)]="clickedEmployee.lastName">
+                                    <mat-icon matSuffix>check_circle</mat-icon>
+                                </mat-form-field>
+                            </p>
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput placeholder="Placeholder" name="email"
+                                        [(ngModel)]="clickedEmployee.email">
+                                    <mat-icon matSuffix>check_circle</mat-icon>
+                                </mat-form-field>
+                            </p>
+
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Salary</mat-label>
+                                    <input matInput placeholder="Placeholder" name="salary"
+                                        [(ngModel)]="clickedEmployee.salary">
+                                    <mat-icon matSuffix>check_circle</mat-icon>
+                                </mat-form-field>
+                            </p>
+
+                           
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
